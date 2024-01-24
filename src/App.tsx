@@ -62,6 +62,7 @@ function App() {
           did: false,
         }),
       });
+      value.setValue('')
     }
   };
 
