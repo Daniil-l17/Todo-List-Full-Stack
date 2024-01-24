@@ -13,7 +13,6 @@ interface Ipost {
 
 function App() {
   const [inputValue, setInputValue] = useState({ email: '', password: '' });
-  console.log(inputValue);
 
   const [user, loading, error] = useAuthState(auth);
   const [post, setPost] = useState<Ipost[]>([]);
