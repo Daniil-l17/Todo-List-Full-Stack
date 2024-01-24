@@ -16,7 +16,7 @@ function App() {
   console.log(inputValue);
 
   const [user, loading, error] = useAuthState(auth);
-  const [m, setM] = useState<Ipost[]>([]);
+  const [post, setPost] = useState<Ipost[]>([]);
 
   const value = useInput();
 
@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     if (user) {
       onSnapshot(doc(db, 'users', `${user?.email}`), doc => {
-        setM(doc.data()?.post);
+        setPost(doc.data()?.post);
       });
     }
   }, [user?.email]);
@@ -91,7 +91,7 @@ function App() {
     signOut(auth)
       .then(() => {
         console.log('вы вышли');
-        setM([]);
+        setPost([]);
       })
       .catch(() => {
         alert('Вы не авторизованны');
@@ -179,8 +179,8 @@ function App() {
               </div>
             )}
             <ul className="flex flex-col items-center gap-6 h-[400px] overflow-auto mt-10">
-              {m.length ? (
-                m.map((el, index) => {
+              {post.length ? (
+                post.map((el, index) => {
                   const isdTrue =
                     'bg-[#5fcf40be] hover:bg-[red] transition duration-150  flex items-center justify-center rounded-md px-2 py-2';
                   const isdFalse =
